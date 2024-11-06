@@ -14,3 +14,12 @@ df_clientes = pd.read_sql (query_clientes, engine)
 
 # Carregar dados da tabela "pedidos" do arquivo em Excel
 df_pedidos = pd.read_excel('tb_pedidos.xlsx')
+
+# Relacionar os dados usando merge
+df_relacionado = pd.merge(df_pedidos, df_clientes, on="id_cliente", how="inner")
+
+# Ordenar o DataFrame relacionado pela coluna "id_cliente"
+df_relacionado = df_relacionado.sort_values(by="nome")
+
+# Exibir o resultado
+print (df_relacionado)
