@@ -1,0 +1,60 @@
+mysql -u root -p
+senha 
+
+CREATE DATABASE bd_loja;
+USE bd_loja;
+
+CREATE TABLE tb_produtos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+NomeProduto VARCHAR(255),
+Categoria VARCHAR(255),
+QuantidadedeEstoque INT,
+Valor Decimal
+);
+
+'carregando arquivo'
+LOAD DATA INFILE "C:\\Users\\51134552024.01\\Desktop\\Aula05\\Aula05\\estoque.csv"
+INTO TABLE tb_produtos
+FIELDS TERMINATED BY ","
+LINES TERMINATED BY "\n"
+IGNORE 1 ROWS
+(NomeProduto, Categoria, QuantidadedeEstoque, Valor);
+
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+
+SHOW VARIABLES LIKE 'secure_file_priv';  (para mostrar onde posso colocar o arquivo e não dar erro)
+
+C:\\ProgramData\\MySQL\\MySQL Server 8.1\\Uploads\\estoque.csv
+
+SET GLOBAL local_infile=1; (para habilitar a opção LOCAL INFILE)
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.1\\Uploads\\estoque.csv"
+INTO TABLE tb_produtos
+FIELDS TERMINATED BY ","
+LINES TERMINATED BY "\n"
+IGNORE 1 ROWS
+(NomeProduto, Categoria, QuantidadedeEstoque, Valor);
+
+SHOW DATABASES; (mostra os databases disponíveis)
+SELECT DATABASE();  (mostra o database atual, o que eu estou usando)
+
+******************************************************************************************************************************************
+NOVO DATABASE
+
+CREATE DATABASE bd_base4;
+
+USE bd_base4;
+
+CREATE TABLE tb_produtos (
+id INT AUTO_INCREMENT PRIMARY KEY,
+Produto VARCHAR(255),
+Quantidade INT,
+Valor Decimal
+);
+
+LOAD DATA INFILE "C:\\ProgramData\\MySQL\\MySQL Server 8.1\\Uploads\\base4.csv"
+INTO TABLE tb_produtos
+FIELDS TERMINATED BY ";"
+LINES TERMINATED BY "\n"
+IGNORE 1 ROWS
+(Produto, Quantidade, Valor);
